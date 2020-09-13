@@ -2,4 +2,5 @@
     <string name="app_name">MyNotes</string>
     <string name="test_title">тестовый заголовок</string>
     <string name="test_body">тестовый текст</string>
+    <string name="new_note_title">новая заметка</string>
 </resources>

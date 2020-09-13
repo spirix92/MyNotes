@@ -10,7 +10,9 @@ class MAViewModel : ViewModel() {
     private val reloadNotesLiveData: MutableLiveData<List<Note>> = MutableLiveData()
 
     init {
-        reloadNotesLiveData.value = Repository.notesList
+        Repository.getNotes().observeForever {
+            reloadNotesLiveData.value = it?.let { it }
+        }
     }
 
     fun getReloadNotesLiveData(): LiveData<List<Note>> = reloadNotesLiveData

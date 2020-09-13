@@ -2,12 +2,11 @@ package com.selen.mynotes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.selen.mynotes.R
+import com.selen.mynotes.data.model.Note
 import com.selen.mynotes.ui.recycler.MARecyclerAdapter
 import com.selen.mynotes.view_model.MAViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,20 +20,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MAViewModel::class.java)
-        mainRecycler.layoutManager = LinearLayoutManager(this)
+        mainRecycler.layoutManager = GridLayoutManager(this, 2)
 
-        val decorator = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
-        ContextCompat.getDrawable(this, R.drawable.separator)?.let {
-            decorator.setDrawable(it)
+        adapter = MARecyclerAdapter {
+            openNoteScreen(it)
         }
-        mainRecycler.addItemDecoration(decorator)
-
-        adapter = MARecyclerAdapter()
         mainRecycler.adapter = adapter
+
         viewModel.getReloadNotesLiveData().observe(this, { notes ->
             notes?.let {
                 adapter.notes = it
             }
         })
+
+        fab.setOnClickListener { openNoteScreen(null) }
     }
+
+    private fun openNoteScreen(note: Note?) {
+        val intent = ActivityNote.getStartIntent(this, note)
+        startActivity(intent)
+    }
+
 }

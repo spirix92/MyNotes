@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation"
+    android:layout_margin="5dp"
     tools:backgroundTint="@android:color/holo_purple">
 
     <LinearLayout

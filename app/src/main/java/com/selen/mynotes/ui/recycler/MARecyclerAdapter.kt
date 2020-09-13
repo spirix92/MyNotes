@@ -3,12 +3,14 @@ package com.selen.mynotes.ui.recycler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.selen.mynotes.R
+import com.selen.mynotes.data.model.Color
 import com.selen.mynotes.data.model.Note
 import kotlinx.android.synthetic.main.item_recycler_notes.view.*
 
-class MARecyclerAdapter : RecyclerView.Adapter<MARecyclerAdapter.MARecyclerViewHolder>() {
+class MARecyclerAdapter(val onItemClick: ((Note) -> Unit)? = null) : RecyclerView.Adapter<MARecyclerAdapter.MARecyclerViewHolder>() {
 
     var notes: List<Note> = listOf()
         set(value) {
@@ -28,13 +30,25 @@ class MARecyclerAdapter : RecyclerView.Adapter<MARecyclerAdapter.MARecyclerViewH
 
     override fun getItemCount() = notes.size
 
-    class MARecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MARecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(note: Note) =
-            with(itemView) {
+            with(itemView as CardView) {
                 title.text = note.title
                 body.text = note.note
-                contaiter.setBackgroundColor(note.color)
+                val myColor = when (note.color) {
+                Color.WHITE -> R.color.color_white
+                Color.VIOLET -> R.color.color_violet
+                Color.YELLOW -> R.color.color_yellow
+                Color.RED -> R.color.color_red
+                Color.GREEN -> R.color.color_green
+                Color.BLUE -> R.color.color_blue
+                }
+                setCardBackgroundColor (context.getColor(myColor))
+
+                setOnClickListener{
+                    onItemClick?.invoke(note)
+                }
             }
 
     }
