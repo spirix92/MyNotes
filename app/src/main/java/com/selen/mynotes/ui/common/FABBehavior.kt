@@ -25,6 +25,26 @@ class FabBehavior(context: Context, attributeSet: AttributeSet) : FloatingAction
         consumed: IntArray
     ) {
         child.x += dyConsumed
+//        if (dyConsumed > 0 && child.visibility == View.VISIBLE) {
+//            child.hide(object : FloatingActionButton.OnVisibilityChangedListener() {
+//                @SuppressLint("RestrictedApi")
+//                override fun onHidden(fab: FloatingActionButton) {
+//                    fab.visibility = View.INVISIBLE
+//                }
+//            })
+//        } else if (dyConsumed < 0 && child.visibility != View.VISIBLE) {
+//            child.show()
+//        }
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed)
     }
+
+//    override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: FloatingActionButton, target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int) {
+//        super.onNestedScroll(
+//            coordinatorLayout, child, target,
+//            dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type
+//        )
+//
+//
+//    }
+
 }
