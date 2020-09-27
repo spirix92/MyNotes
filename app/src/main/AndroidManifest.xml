@@ -3,7 +3,7 @@
     package="com.selen.mynotes">
 
     <application
-        android:name=".ui.main.App"
+        android:name=".ui.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name="ru.geekbrains.gb_kotlin.ui.main.MainActivity" />
         <activity android:name=".ui.note.NoteActivity" />
 
     </application>

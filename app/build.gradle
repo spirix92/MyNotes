@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
+androidExtensions {
+    experimental = true
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -48,4 +52,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.4.0'
     implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
 
+    implementation 'org.koin:koin-android:1.0.1'
+    implementation 'org.koin:koin-android-viewmodel:1.0.1'
 }

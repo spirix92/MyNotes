@@ -1,4 +1,4 @@
-package com.selen.mynotes.ui.main
+package ru.geekbrains.gb_kotlin.ui.main
 
 import android.content.Context
 import android.content.Intent
@@ -6,18 +6,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import com.selen.mynotes.R
 import com.selen.mynotes.data.entity.Note
+import com.selen.mynotes.data.provider.FirestoreProvider
 import com.selen.mynotes.ui.base.BaseActivity
+import com.selen.mynotes.ui.main.MainViewModel
+import com.selen.mynotes.ui.main.MainViewState
+import com.selen.mynotes.ui.main.NotesRVAdapter
 import com.selen.mynotes.ui.note.NoteActivity
 import com.selen.mynotes.ui.splash.SplashActivity
 
 
 class MainActivity : BaseActivity<List<Note>?, MainViewState>(), LogoutDialog.LogoutListener {
+
+    val firestoreProvider: FirestoreProvider by inject()
 
     companion object {
         fun start(context: Context) = Intent(context, MainActivity::class.java).apply {
@@ -25,10 +32,7 @@ class MainActivity : BaseActivity<List<Note>?, MainViewState>(), LogoutDialog.Lo
         }
     }
 
-    override val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }
-
+    override val viewModel: MainViewModel by viewModel()
     override val layoutRes: Int = R.layout.activity_main
     lateinit var adapter: NotesRVAdapter
 
@@ -64,9 +68,7 @@ class MainActivity : BaseActivity<List<Note>?, MainViewState>(), LogoutDialog.Lo
         }
 
     fun showLogoutDialog() {
-        supportFragmentManager.findFragmentByTag(LogoutDialog.TAG) ?: LogoutDialog().show(supportFragmentManager,
-            LogoutDialog.TAG
-        )
+        supportFragmentManager.findFragmentByTag(LogoutDialog.TAG) ?: LogoutDialog().show(supportFragmentManager, LogoutDialog.TAG)
     }
 
     override fun onLogout() {
