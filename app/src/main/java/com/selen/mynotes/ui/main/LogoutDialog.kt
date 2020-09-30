@@ -1,4 +1,4 @@
-package ru.geekbrains.gb_kotlin.ui.main
+package com.selen.mynotes.ui.main
 
 import android.app.Dialog
 import android.os.Bundle

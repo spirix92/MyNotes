@@ -3,7 +3,7 @@ package com.selen.mynotes.ui.splash
 import android.os.Handler
 import org.koin.android.viewmodel.ext.android.viewModel
 import com.selen.mynotes.ui.base.BaseActivity
-import ru.geekbrains.gb_kotlin.ui.main.MainActivity
+import com.selen.mynotes.ui.main.MainActivity
 
 class SplashActivity : BaseActivity<Boolean?, SplashViewState>(){
 

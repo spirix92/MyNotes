@@ -1,4 +1,4 @@
-package ru.geekbrains.gb_kotlin.ui.main
+package com.selen.mynotes.ui.main
 
 import android.content.Context
 import android.content.Intent
@@ -15,9 +15,6 @@ import com.selen.mynotes.R
 import com.selen.mynotes.data.entity.Note
 import com.selen.mynotes.data.provider.FirestoreProvider
 import com.selen.mynotes.ui.base.BaseActivity
-import com.selen.mynotes.ui.main.MainViewModel
-import com.selen.mynotes.ui.main.MainViewState
-import com.selen.mynotes.ui.main.NotesRVAdapter
 import com.selen.mynotes.ui.note.NoteActivity
 import com.selen.mynotes.ui.splash.SplashActivity
 
@@ -68,7 +65,9 @@ class MainActivity : BaseActivity<List<Note>?, MainViewState>(), LogoutDialog.Lo
         }
 
     fun showLogoutDialog() {
-        supportFragmentManager.findFragmentByTag(LogoutDialog.TAG) ?: LogoutDialog().show(supportFragmentManager, LogoutDialog.TAG)
+        supportFragmentManager.findFragmentByTag(LogoutDialog.TAG) ?: LogoutDialog().show(supportFragmentManager,
+            LogoutDialog.TAG
+        )
     }
 
     override fun onLogout() {
